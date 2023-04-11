@@ -11,9 +11,9 @@ x=A(:,end); %el vector de incógnitas es un vector columna
 n=length(x); %necesitamos n (tamaño de la matriz) para
              %recorrerla de atrás hacia adelante
 
-x(n)=A(n,n+1)/A(n,n) %calculo el último elemento del vector
-                     %de términos independientes, ya que dicha
-                     %ecuación solo tiene una incógnita (Xn)
+x(n)=A(n,n+1)/A(n,n); %calculo el último elemento del vector
+                      %de términos independientes, ya que dicha
+                      %ecuación solo tiene una incógnita (Xn)
 
 for i = n-1:-1:1 %for que recorre la matriz desde la penúltima fila
                  %hasta la primera (n-1 porque n es el último

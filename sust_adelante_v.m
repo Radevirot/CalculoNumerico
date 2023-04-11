@@ -32,3 +32,4 @@ for i = 2:n      %for que recorre la matriz desde la segunda fila
   % con el bucle for de j.
 
 endfor
+

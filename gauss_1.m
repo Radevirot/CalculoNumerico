@@ -4,9 +4,10 @@
 
 % El input es una matriz CUADRADA y su vector de términos independientes.
 
-% No retorna nada, sino que modifica la matriz ingresada.
+% Retorna el vector de incógnitas.
 
-function [x] = gauss1(A,b)
+function [x] = gauss_1(A,b)
+  tic();
   n=length(b); % Podemos obtener el tamaño de la matriz midiendo el vector
                % de términos independientes gracias a que esta es cuadrada.
 
@@ -64,5 +65,10 @@ function [x] = gauss1(A,b)
   if (A(n,n)==0) % Podemos garantizar que si el último pivote es cero luego
                  % de realizar la eliminación, el sistema no tendrá solución
                  % única. (repasar matrices si no se entiende esto...)
-    disp(’no hay sol. unica’)
+    disp('no hay sol. unica')
   endif
+
+  x = sust_atras1(A); % Ahora que la matriz ya es triangular superior podemos
+                      % utilizar la función de sustitución hacia atrás para
+                      % calcular el vector de incógnitas.
+  toc()

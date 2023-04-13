@@ -1,3 +1,4 @@
+%Revisa si la matriz cumple con la definición de estrictamente diagonal dominante.
 function checkEDD(A)
   n = length(A);
   edd = 1;

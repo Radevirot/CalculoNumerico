@@ -22,10 +22,11 @@ function [x] = gauss_p(A,b)
       break
     endif
 
-    pos = pos+k-1; %ajustamos la posición para que sea global en la matriz, y no
-                   %relativa a la posición del pivote actual
+    pos = pos(1)+k-1; %ajustamos la posición para que sea global en la matriz, y no
+                      %relativa a la posición del pivote actual. "pos(1)" en caso de tener
+                      %más de una posición con valor máximo, se elije la primera de ellas
 
-    if pos!=k %si el pivote más grande está en otro lado ↓
+    if pos!=k                %si el pivote más grande está en otro lado ↓
       r([pos k])= r([k pos]) %intercambiamos las "filas", realmente son las
                              %posiciones dentro del vector de posiciones
     endif
@@ -35,7 +36,10 @@ function [x] = gauss_p(A,b)
     %vector de posiciones, para que se recorran en el orden que el algoritmo
     %haya encontrado como más eficiente según el tamaño de los pivotes.
 
-    A(r(k+1:n),k) = A(r(k+1:n),k)/A(r(k),k);
+    A(r(k+1:n),k) = A(r(k+1:n),k)/A(r(k),k); %me guardo los multiplicadores en la parte triangular
+                                             %inferior de la matriz, para crear la matriz L de la
+                                             %factorización PA = LU
+
     A(r(k+1:n),k+1:n+1) = A(r(k+1:n),k+1:n+1)-...
     A(r(k+1:n),k)*A(r(k),k+1:n+1);
 

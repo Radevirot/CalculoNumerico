@@ -1,10 +1,9 @@
 %Esta función se encarga de realizar sustitución hacia atrás
-%en una matriz que ya sea triangular superior, y cuyo input
-%debe ser la matriz aumentada con el vector de términos independientes.
+%en una matriz que ya sea triangular superior, y cuyos inputs
+%deben ser la matriz y el vector de términos independientes.
 
 %Para esto, crea un nuevo vector donde se almacenarán los valores
-%del Xn correspondiente a cada renglón. Esta función no modifica
-%la matriz original en ningún momento.
+%del Xn correspondiente a cada renglón.
 
 function x=sust_atras1(A)
 x=A(:,end); %el vector de incógnitas es un vector columna

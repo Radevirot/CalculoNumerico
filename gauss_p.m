@@ -37,8 +37,7 @@ function [x] = gauss_p(A,b)
     %haya encontrado como más eficiente según el tamaño de los pivotes.
 
     A(r(k+1:n),k) = A(r(k+1:n),k)/A(r(k),k); %me guardo los multiplicadores en la parte triangular
-                                             %inferior de la matriz, para crear la matriz L de la
-                                             %factorización PA = LU
+                                             %inferior de la matriz
 
     A(r(k+1:n),k+1:n+1) = A(r(k+1:n),k+1:n+1)-...
     A(r(k+1:n),k)*A(r(k),k+1:n+1);

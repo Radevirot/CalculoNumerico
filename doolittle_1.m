@@ -3,7 +3,8 @@
 % (L y U dentro de la misma), también retorna L y U por separado.
 
 function [A, L, U] = doolittle_1(A)
-  n = length(A(1,:)); % Tamaño de la matriz
+  n = length(A(1,:)); % Se obtiene el tamaño de la matriz mediante el largo de
+                      % una de sus columnas.
 
   for k=1:n-1 % Desde el primer al penúltimo pivote
 

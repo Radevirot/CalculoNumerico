@@ -36,5 +36,6 @@ function [x] = gauss_v(A,b)
     disp('no hay sol. unica')
   endif
 
+
   x = sust_atras_v(A);
   toc()

@@ -1,0 +1,8 @@
+m = 5;
+n = 4*m+1;
+x = linspace(0,1,n); % devuelve un vector fila que comienza en 0 y acaba en 1 con una cantidad de n elementos linealmente espaciados
+y = zeros(1,n); % devuelve un vector fila (por el 1) con n ceros
+a = x(1:m+1); % devuelve un vector fila que se queda con los elementos desde el 1 hasta el m+1 del vector x
+y(1:m+1) = sin(2*pi*a); % asigna a los elementos desde el 1 hasta el m+1 de y el valor indicado, se utiliza cada uno de los valores de a correspondientes
+y(2*m+1:-1:m+2) = y(1:m); % se copian al revés los valores ya asignados de y, desde 2*m+1 hasta m+2
+y(2*m+2:n) = -y(2:2*m); no funciona?

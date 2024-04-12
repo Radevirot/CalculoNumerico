@@ -3,7 +3,6 @@
 
 function x=sust_atras_v(A)
 x=A(:,end); %el vector de incógnitas es un vector columna
-
 n=length(x); %necesitamos n (tamaño de la matriz) para
              %recorrerla de atrás hacia adelante
 

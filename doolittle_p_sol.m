@@ -5,11 +5,15 @@
 % producto de la factorización, que debería devolver lo mismo que la matriz
 % original permutada Z.
 
+% Agregados x y r a los posibles retornos de la función, x es el vector de
+% incógnitas de la ecuación LUx = b, calculado en las últimas líneas de la función,
+% mientras que r es el vector de posiciones.
+
 % Básicamente viene de la teoría, donde dice que PA = LU, en este caso PA es Z
 % y LU es Z1.
 
 
-function [A, r, L, U, P, Z, Z1] = doolittle_p(A1)
+function [x, A, r, L, U, P, Z, Z1] = doolittle_p(A1, b)
   n = length(A1(1,:));
   r = 1:n;
   epsilon = 1e-9;
@@ -46,4 +50,7 @@ function [A, r, L, U, P, Z, Z1] = doolittle_p(A1)
   Z = P*A1;
   Z1 = L*U;
 
+  y = sust_adelante_v([L b(r)]); % Importante permutar el vector de términos
+                                 % independientes antes de realizar la sust.
+  x = sust_atras_v([U y]);
   endfunction

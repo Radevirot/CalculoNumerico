@@ -1,0 +1,63 @@
+>> f = @(x) ((x+1)./(x.^2+x+1)).^6 .* (cos(x)+3)
+f =
+
+@(x) ((x + 1) ./ (x .^ 2 + x + 1)) .^ 6 .* (cos (x) + 3)
+
+>> x=[2 3]
+x =
+
+   2   3
+
+>> f(x)
+ans =
+
+   1.6011e-02   1.7057e-03
+
+>> x = linspace(0,2,20)
+x =
+
+ Columns 1 through 11:
+
+        0   0.1053   0.2105   0.3158   0.4211   0.5263   0.6316   0.7368   0.8421   0.9474   1.0526
+
+ Columns 12 through 20:
+
+   1.1579   1.2632   1.3684   1.4737   1.5789   1.6842   1.7895   1.8947   2.0000
+
+>> plot(x,f)
+error: __go_line__: invalid value for array property "ydata", unable to create graphics handle
+error: called from
+    __plt__>__plt2vs__ at line 468 column 15
+    __plt__>__plt2__ at line 246 column 14
+    __plt__ at line 115 column 16
+    plot at line 240 column 10
+>> y = f(x)
+y =
+
+ Columns 1 through 9:
+
+   4.000000   3.762406   3.205941   2.548555   1.932508   1.420808   1.024853   0.731386   0.519460
+
+ Columns 10 through 18:
+
+   0.368685   0.262227   0.187260   0.134434   0.097103   0.070607   0.051702   0.038135   0.028337
+
+ Columns 19 and 20:
+
+   0.021218   0.016011
+
+>> plot(x,y)
+error: parse error:
+
+  invalid character '' (ASCII 195)
+
+>>> plot(x,y)
+    ^
+>> plot(x,y)
+error: parse error:
+
+  invalid character '' (ASCII 195)
+
+>>> plot(x,y)
+    ^
+>> plot(x,y)

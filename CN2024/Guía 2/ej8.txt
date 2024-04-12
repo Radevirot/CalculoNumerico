@@ -1,0 +1,88 @@
+>> tp2ej8
+
+A1 =
+
+   8   4   1
+   2   6   2
+   2   4   8
+
+A2 =
+
+   5.0000e-02   5.5700e+02  -4.0000e-02
+   1.9800e+00   1.9400e+02  -3.0000e-03
+   2.7400e+02   3.1100e+00   7.5000e-02
+
+A3 =
+
+   1   2  -1
+   2   4   0
+   0   1  -1
+
+b =
+
+   1
+   2
+   3
+
+A1 octave
+x1Octave =
+
+  -0.037313
+   0.261194
+   0.253731
+
+A1 sin pivoteo
+x1SinPiv =
+
+  -0.037313
+   0.261194
+   0.253731
+
+A1 con pivoteo
+x1ConPiv =
+
+  -0.037313
+   0.261194
+   0.253731
+
+A2 octave
+x2Octave =
+
+  -3.2136e-02
+   1.3063e-02
+   1.5686e+02
+
+A2 sin pivoteo
+x2SinPiv =
+
+  -3.2136e-02
+   1.3063e-02
+   1.5686e+02
+
+A2 con pivoteo
+x2ConPiv =
+
+  -3.2136e-02
+   1.3063e-02
+   1.5686e+02
+
+A3 octave
+x3Octave =
+
+  -5
+   3
+   0
+
+A3 sin pivoteo
+x3SinPiv =
+
+   NaN
+   NaN
+   NaN
+
+A3 con pivoteo
+x3ConPiv =
+
+  -5
+   3
+   0

@@ -1,0 +1,20 @@
+>> tp2ej13(100)
+Elapsed time is 0.00442386 seconds.
+Elapsed time is 0.00396395 seconds.
+Elapsed time is 0.00406694 seconds.
+Elapsed time is 0.00414014 seconds.
+Elapsed time is 0.00402713 seconds.
+Elapsed time is 0.00385499 seconds.
+Elapsed time is 0.00411677 seconds.
+Elapsed time is 0.00389099 seconds.
+Elapsed time is 0.00405502 seconds.
+Elapsed time is 0.0039041 seconds.
+ans =
+
+ Columns 1 through 7:
+
+   3.3839e+01   2.0610e+00   3.5325e-01   1.0912e-01   4.2920e-02   1.8814e-02   8.7044e-03
+
+ Columns 8 through 10:
+
+   4.1622e-03   2.0219e-03   9.9211e-04

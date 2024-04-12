@@ -13,7 +13,7 @@
 % y LU es Z1.
 
 
-function [x, A, r, L, U, P, Z, Z1] = doolittle_p(A1, b)
+function [x, A, r, L, U, P, Z, Z1] = doolittle_p_sol(A1, b)
   n = length(A1(1,:));
   r = 1:n;
   epsilon = 1e-9;

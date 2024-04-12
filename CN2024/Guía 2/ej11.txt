@@ -1,0 +1,23 @@
+>> tp2ej11
+
+A =
+
+    1    1    3
+    2    2   20
+    3    6    4
+
+sin pivoteo
+Residualsp =
+
+   0   0   0
+   0   0   0
+   0   0   4
+
+con pivoteo
+Residualcp =
+
+            0            0            0
+            0            0            0
+            0            0   8.8818e-16
+
+La matriz residual tiene valores menores (lo cuál es mejor) debido al pivoteo parcial

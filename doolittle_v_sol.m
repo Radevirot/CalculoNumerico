@@ -8,7 +8,7 @@
 % de los índices de la matriz: por ejemplo, si el lazo era "for i=k+1:n", se
 % cambió A(i,k) por A(k+1:n,k)
 
-function [x, A, L, U] = doolittle_v(A,b)
+function [x, A, L, U] = doolittle_v_sol(A,b)
   n = length(A(1,:));
 
   for k=1:n-1

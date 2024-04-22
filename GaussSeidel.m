@@ -1,10 +1,10 @@
-function [x, r, it] = GaussSeidel(A,b,x0,maxit,tol)
+function [x, it, r] = GaussSeidel(A,b,x0,maxit,tol)
   tic();
   n = length(A(1,:));
   x = x0;
   it = 0;
 
-  while it < maxit
+  while it < maxit                  % A = L + D + U → Ags = (D+L) + U
     for i = 1:n
       x(i) =...
       (b(i)...

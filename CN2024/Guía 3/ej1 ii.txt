@@ -1,0 +1,1 @@
+La matriz A es convergente ya que todos sus valores son menores a 1 y mayores a 0, y cualquier valor en el intervalo abierto (0,1) elevado a la k tendiendo a infinito da como resultado 0.

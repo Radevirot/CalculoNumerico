@@ -1,19 +1,43 @@
+%Esta función tiene como entrada una matriz (A), un vector de términos
+%independientes (b), un vector de incógnitas inicial (x0), la cantidad
+%máxima de iteraciones antes de que el algoritmo corte (maxit), y la tolerancia,
+%(tol) utilizada como parámetro de corte.
+
+%Retorna el vector de soluciones aproximadas (x) (si es que converge), la
+%cantidad de iteraciones necesarias antes de que el error alcance la tolerancia
+%(it), y un vector que contiene todos los errores de las iteraciones (r). Este
+%último puede ser ploteado para analizar la convergencia gráficamente.
+
+%Es importante tener en cuenta que esta función sólo se puede utilizar con
+%matrices cuya matriz de iteración Tc (dependiente del método iterativo) tenga
+%un radio espectral menor a 1. → spectral_radius(Tc(A,'j')) < 1
+
+%Otro posible análisis de convergencia es revisar si la matriz es estrictamente
+%diagonal dominante. En caso de serlo, se sabe que el método iterativo converge.
+
+%Por último, otro valor a revisar es el número de condición de la matriz de
+%iteración, que en octave se calcula como 'cond(A)', si este es pequeño significa
+%que las perturbaciones pequeñas no causan grandes cambios en el resultado.
+
+
 function [x, it, r] = Jacobi(A,b,x0,maxit,tol)
   tic();
-  n = length(A(1,:));
+  n = length(A(1,:)); %tamaño matriz
   x = x0;
-  it = 0;
+  it = 0; %contador de iteraciones
 
   while it < maxit                  % A = L + D + U → Aj = D + (L+U)
     for i = 1:n                     % x^(k) = D^-1 b - D^-1 (L+U) x^(k-1)
-      x(i) =...                     % x^(k)
-      (b(i)...                      % b
-      -A(i,1:i-1)*x0(1:i-1)...      % L*x^(k-1)
-      -A(i,i+1:n)*x0(i+1:n))...     % U*x^(k-1)
-      /A(i,i);                      % D^-1 (divide todo por los elementos de diag)
+      x(i) =...
+      (b(i)...
+      -A(i,1:i-1)*x0(1:i-1)...
+      -A(i,i+1:n)*x0(i+1:n))...
+      /A(i,i);
      endfor
 
-     r(it+1) = norm(b-(A*x));
+     r(it+1) = norm((A*x)-b); %me guardo el error actual (norma euclideana de Ax-b)
+                              %en un vector de errores cuyas posiciones corresponden
+                              %a las iteraciones
 
      if r(it+1) < tol
        disp("Cortó por tolerancia")

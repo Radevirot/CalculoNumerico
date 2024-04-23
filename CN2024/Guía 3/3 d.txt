@@ -1,0 +1,1 @@
+El método de Gauss Seidel converge para la matriz del ejercicio 1 porque el radio espectral de la matriz de iteración del método es menor a 1 (0.222222222222)

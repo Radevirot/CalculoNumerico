@@ -1,0 +1,139 @@
+>> A = matriz_tp3ej7(1000);
+>> b = linspace(pi,pi,1000);
+>> b=b';
+>> % Número de condición
+>> c=cond(A)
+c = 1914.1
+>> % JACOBI
+>> % Radio espectral de la matriz de iteración de Jacobi
+>> pT_j = spectral_radius(Tc(A,'Jac'))
+pT_j = 0.7500
+>> % El radio espectral es menor a 1, por lo que el método de Jacobi converge a ula solución. Se procederá a utilizarlo
+:
+>> [xJ itJ rJ] = Jacobi(A, b, linspace(0,0,1000)', 100, 1e-5);
+Cortó por tolerancia
+Elapsed time is 1.61392 seconds.
+>> % GAUSS SEIDEL
+>> % Radio espectral de la matriz de iteración de Gauss Seidel
+>> pT_gs = spectral_radius(Tc(A,'GaS'))
+pT_gs = 0.2380
+>> % Un radio espectral mucho menor al anterior, utilicemos el método de GaussSeidel:
+>> [xGS itGS rGS] = GaussSeidel(A, b, linspace(0,0,1000)', 100, 1e-5);
+Cortó por tolerancia
+Elapsed time is 0.379518 seconds.
+>> % SOR
+>> % Análisis de SOR óptimo:
+>> checkEDD(A)
+edd
+>> % Es estrictamente diagonal dominante, sin embargo no es una matriz tridiagonal, así que no es posible utilizar la
+fórmula para calcular el omega óptimo, el mismo se deberá obtener a partir de un análisis por tanteo:
+>> w = wTanteo(A,b,linspace(0,0,1000)',100,1e-5)
+Cortó por iteraciones
+Elapsed time is 2.97931 seconds.
+Cortó por iteraciones
+Elapsed time is 2.97907 seconds.
+Cortó por iteraciones
+Elapsed time is 2.96696 seconds.
+Cortó por tolerancia
+Elapsed time is 2.61055 seconds.
+Cortó por tolerancia
+Elapsed time is 2.0052 seconds.
+Cortó por tolerancia
+Elapsed time is 1.61916 seconds.
+Cortó por tolerancia
+Elapsed time is 1.32561 seconds.
+Cortó por tolerancia
+Elapsed time is 1.12636 seconds.
+Cortó por tolerancia
+Elapsed time is 0.946267 seconds.
+Cortó por tolerancia
+Elapsed time is 0.8278 seconds.
+Cortó por tolerancia
+Elapsed time is 0.711419 seconds.
+Cortó por tolerancia
+Elapsed time is 0.622132 seconds.
+Cortó por tolerancia
+Elapsed time is 0.562489 seconds.
+Cortó por tolerancia
+Elapsed time is 0.502361 seconds.
+Cortó por tolerancia
+Elapsed time is 0.443091 seconds.
+Cortó por tolerancia
+Elapsed time is 0.392307 seconds.
+Cortó por tolerancia
+Elapsed time is 0.357232 seconds.
+Cortó por tolerancia
+Elapsed time is 0.327824 seconds.
+Cortó por tolerancia
+Elapsed time is 0.328132 seconds.
+Cortó por tolerancia
+Elapsed time is 0.385785 seconds.
+Cortó por tolerancia
+Elapsed time is 0.416602 seconds.
+Cortó por tolerancia
+Elapsed time is 0.476088 seconds.
+Cortó por tolerancia
+Elapsed time is 0.535801 seconds.
+Cortó por tolerancia
+Elapsed time is 0.591466 seconds.
+Cortó por tolerancia
+Elapsed time is 0.681805 seconds.
+Cortó por tolerancia
+Elapsed time is 0.747575 seconds.
+Cortó por tolerancia
+Elapsed time is 0.860319 seconds.
+Cortó por tolerancia
+Elapsed time is 0.948248 seconds.
+Cortó por tolerancia
+Elapsed time is 1.06633 seconds.
+Cortó por tolerancia
+Elapsed time is 1.21533 seconds.
+Cortó por tolerancia
+Elapsed time is 1.56821 seconds.
+Cortó por tolerancia
+Elapsed time is 1.92487 seconds.
+Cortó por tolerancia
+Elapsed time is 2.28223 seconds.
+Cortó por tolerancia
+Elapsed time is 2.73254 seconds.
+Cortó por tolerancia
+Elapsed time is 3.35587 seconds.
+Cortó por iteraciones
+Elapsed time is 3.51619 seconds.
+Cortó por iteraciones
+Elapsed time is 3.50677 seconds.
+Cortó por iteraciones
+Elapsed time is 3.52155 seconds.
+Cortó por iteraciones
+Elapsed time is 3.51451 seconds.
+w = 0.9000
+>> %El omega cercano al óptimo encontrado es de 0.9, se utilizará el mismo con el método de SOR:
+>> [xSOR itSOR rSOR] = SOR
+error: 'A' undefined near line 36, column 14
+error: called from
+    SOR at line 36 column 5
+>> [xSOR itSOR rSOR] = SOR(A, b, linspace(0,0,1000)',100,1e-5,0.9);
+Cortó por tolerancia
+Elapsed time is 0.329995 seconds.
+>> itJ
+itJ = 55
+>> itGS
+itGS = 12
+>> itSOR
+itSOR = 10
+>> itJVec = (1:56); itGSVec = (1:13) ; itSORVec = (1:11);
+>> semilogy(rJ,itJVec)
+>> hold on
+>> semilogy(rGS,itGSVec)
+>> semilogy(rSOR,itSORVec)
+>> %El tiempo de Jacobi fue de 1.61392 segundos.
+>> %El tiempo de Gauss Seidel fue de 0.379518 segundos.
+>> %El tiempo de SOR fue de 0.329995 segundos.
+>> % El método SOR fue claramente mejor en todos los aspectos, obteniendo un menor residuo, una menor cantidad de iter
+aciones, y un menor tiempo de reloj de ejecución. Es probable que haya un omega aún más óptimo entre 0.9 y 0.95.
+>> % Respecto a la precisión de los resultados obtenidos, no es del todo buena, ya que inicialmente obtuvimos un núme
+ro de condición cercano a 2000 (relativamente grande), que indica que una pequeña perturbación en los datos puede gen
+erar grandes cambios en los resultados.
+>> legend show
+>> legend('Jacobi','Gauss Seidel','SOR')
+>> xlabel('Iteraciones') ; ylabel('log de la norma del residuo') ; title('Tasa de convergencia')

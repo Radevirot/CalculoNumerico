@@ -1,0 +1,91 @@
+>> A = [10 5 0 0 ; 5 10 -4 0 ; 0 -4 8 -1 ; 0 0 -1 5]
+
+A =
+
+   10    5    0    0
+    5   10   -4    0
+    0   -4    8   -1
+    0    0   -1    5
+
+>> b = [6 25 -11 -11]
+
+b =
+
+    6   25  -11  -11
+
+>> w = wOpt(A) %Puedo usar la fórmula de omega óptimo porque la matriz es EDD y banda
+
+w = 1.1535
+>> spectral_radius(Tc(A,'SOR',1.1535))
+
+ans = 0.1535
+>> %Podemos observar que el radio espectral es claramente menor a 1 y está muy cerca del cero
+>> %Además, el omega óptimo resulta mayor a 1, por lo que el método es de sobre-relajación
+>> b = b'
+b =
+
+    6
+   25
+  -11
+  -11
+
+>> [xSOR, itSOR, rSOR] = SOR(A, b, [0 0 0 0]', 100, 1e-5, w)
+Cortó por tolerancia
+Elapsed time is 0.00261998 seconds.
+xSOR =
+
+  -0.7976
+   2.7953
+  -0.2588
+  -2.2518
+
+itSOR = 9
+rSOR =
+
+ Columns 1 through 9:
+
+   1.4218e+01   1.1112e+00   5.6557e-01   5.7886e-02   3.0526e-02   1.7045e-03   9.5707e-04   6.4714e-05   2.4187e-05
+
+ Column 10:
+
+   2.9218e-06
+
+>> [xGS, itGS, rGS] = GaussSeidel(A, b, [0 0 0 0]', 100, 1e-5)
+Cortó por tolerancia
+Elapsed time is 0.00218701 seconds.
+xGS =
+
+  -0.7976
+   2.7953
+  -0.2588
+  -2.2518
+
+itGS = 16
+rGS =
+
+ Columns 1 through 9:
+
+   1.1283e+01   2.2139e+00   4.5690e-01   2.0486e-01   9.4452e-02   4.3585e-02   2.0112e-02   9.2810e-03   4.2828e-03
+
+ Columns 10 through 17:
+
+   1.9763e-03   9.1198e-04   4.2084e-04   1.9420e-04   8.9614e-05   4.1353e-05   1.9082e-05   8.8057e-06
+
+>> itsSOR = (1:10)
+itsSOR =
+
+    1    2    3    4    5    6    7    8    9   10
+
+>> itsGS = (1:17)
+itsGS =
+
+    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17
+
+>> plot(itsSOR, rSOR)
+>> hold on
+>> plot(itsGS, rGS)
+>> xlabel('iteraciones')
+>> ylabel('error')
+>> legend show
+>> legend('SOR', 'Gauss Seidel')
+>> title('Convergencia')

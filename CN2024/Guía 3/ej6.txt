@@ -1,0 +1,184 @@
+>> A = [3 1 1 ; 1 3 -1 ; 3 1 -5]
+A =
+
+   3   1   1
+   1   3  -1
+   3   1  -5
+
+>> bA = [5 3 -1]'
+bA =
+
+   5
+   3
+  -1
+
+>> B = [3 1 1 ; 3 1 -5 ; 1 3 -1]
+B =
+
+   3   1   1
+   3   1  -5
+   1   3  -1
+
+>> bB = [5 -1 3]'
+bB =
+
+   5
+  -1
+   3
+
+>> %Reviso si puedo utilizar GaussSeidel para resolver los sistemas checkeando el radio espectral de la matriz de iter
+ación
+>> pT_A = spectral_radius(Tc(A,'GaS'))
+pT_A = 0.2582
+>> pT_B = spectral_radius(Tc(B,'GaS'))
+pT_B = 18.577
+>> checkSDP(B)
+not sdp
+>> checkEDD(B)
+not edd
+>> % La matriz B no se puede resolver utilizando el método iterativo de Gauss Seidel debido a que el radio espectral e
+s mucho mayor que 1
+>> [xA, itA, rA] = GaussSeidel(A, bA, [0 0 0]', 100, 1e-5)
+Cortó por tolerancia
+Elapsed time is 0.000991106 seconds.
+xA =
+
+   1.0000
+   1.0000
+   1.0000
+
+itA = 9
+rA =
+
+ Columns 1 through 9:
+
+   2.1600e+00   4.5758e-01   1.4400e-01   3.0506e-02   9.6001e-03   2.0337e-03   6.4001e-04   1.3558e-04   4.2667e-05
+
+ Column 10:
+
+   9.0387e-06
+
+>> [xB, itB, rB] = GaussSeidel(B, bB, [0 0 0]', 100, 1e-5)
+Cortó por iteraciones
+Elapsed time is 0.00838804 seconds.
+xB =
+
+   2.0812e+125
+  -2.9516e+126
+  -8.6468e+126
+
+itB = 100
+rB =
+
+ Columns 1 through 8:
+
+    9.9931e+01    1.8510e+03    3.4385e+04    6.3877e+05    1.1866e+07    2.2044e+08    4.0951e+09    7.6075e+10
+
+ Columns 9 through 16:
+
+    1.4132e+12    2.6254e+13    4.8771e+14    9.0602e+15    1.6831e+17    3.1267e+18    5.8085e+19    1.0790e+21
+
+ Columns 17 through 24:
+
+    2.0045e+22    3.7238e+23    6.9177e+24    1.2851e+26    2.3873e+27    4.4349e+28    8.2387e+29    1.5305e+31
+
+ Columns 25 through 32:
+
+    2.8432e+32    5.2818e+33    9.8120e+34    1.8228e+36    3.3861e+37    6.2904e+38    1.1686e+40    2.1708e+41
+
+ Columns 33 through 40:
+
+    4.0328e+42    7.4916e+43    1.3917e+45    2.5854e+46    4.8029e+47    8.9222e+48    1.6575e+50    3.0791e+51
+
+ Columns 41 through 48:
+
+    5.7200e+52    1.0626e+54    1.9740e+55    3.6671e+56    6.8123e+57    1.2655e+59    2.3510e+60    4.3674e+61
+
+ Columns 49 through 56:
+
+    8.1132e+62    1.5072e+64    2.7999e+65    5.2013e+66    9.6625e+67    1.7950e+69    3.3346e+70    6.1946e+71
+
+ Columns 57 through 64:
+
+    1.1508e+73    2.1378e+74    3.9713e+75    7.3775e+76    1.3705e+78    2.5460e+79    4.7297e+80    8.7864e+81
+
+ Columns 65 through 72:
+
+    1.6322e+83    3.0322e+84    5.6329e+85    1.0464e+87    1.9439e+88    3.6112e+89    6.7086e+90    1.2462e+92
+
+ Columns 73 through 80:
+
+    2.3151e+93    4.3008e+94    7.9896e+95    1.4842e+97    2.7572e+98    5.1221e+99   9.5153e+100   1.7677e+102
+
+ Columns 81 through 88:
+
+   3.2838e+103   6.1003e+104   1.1332e+106   2.1052e+107   3.9108e+108   7.2652e+109   1.3496e+111   2.5072e+112
+
+ Columns 89 through 96:
+
+   4.6577e+113   8.6525e+114   1.6074e+116   2.9860e+117   5.5471e+118   1.0305e+120   1.9143e+121   3.5562e+122
+
+ Columns 97 through 100:
+
+   6.6064e+123   1.2273e+125   2.2799e+126   4.2353e+127
+
+>> % Podemos observar que para A el método converge a la solución [1 1 1]', pero para B el método se aleja de la sol
+ución debido que el error crece con cada iteración.
+>> % Ahora se utilizará el método de gauss vectorizado para resolver ambos sistemas:
+
+>> xgaussA = gauss_v(A,bA)
+Elapsed time is 0.0257211 seconds.
+xgaussA =
+
+   1
+   1
+   1
+
+>> xgaussB = gauss_v(B,bB)
+Elapsed time is 0.000262022 seconds.
+xgaussB =
+
+   NaN
+   NaN
+   NaN
+
+>> % Como se puede observar, el método vectorizado de gauss no encuentra el vector solución de B. Esto se debe a que en la
+s operaciones de resta, el segundo pivote de la matriz se hace cero, generando divisiones por cero y requiriendo el uso
+ de una estrategia de pivoteo para lograr solucionar el problema, así que eso se hará a continuación:
+
+>> xgaussB = gauss_p(B,bB)
+r =
+
+   1   3   2
+
+xgaussB =
+
+   1
+   1
+   1
+
+>> % Gauss con pivoteo solucionó correctamente el problema. Además, obtuvimos el vector de posiciones de la matriz B
+, el cuál utilizaremos para probar el método de GaussSeidel:
+
+>> [xB, itB, rB] = GaussSeidel(B([1 3 2], :), bB([1 3 2]), [0 0 0]', 100, 1e-5)
+Cortó por tolerancia
+Elapsed time is 0.00107813 seconds.
+xB =
+
+   1.0000
+   1.0000
+   1.0000
+
+itB = 9
+rB =
+
+ Columns 1 through 9:
+
+   2.1600e+00   4.5758e-01   1.4400e-01   3.0506e-02   9.6001e-03   2.0337e-03   6.4001e-04   1.3558e-04   4.2667e-05
+
+ Column 10:
+
+   9.0387e-06
+
+>> % Al pasarle la matriz ordenada de acuerdo al vector de posiciones obtenido de la estrategia de pivoteo de gauss_p,
+el método de Gauss Seidel pudo encontrar correctamente el vector solución aproximado, en un total de 9 iteraciones.

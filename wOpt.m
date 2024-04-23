@@ -2,8 +2,6 @@
 %Si no lo es, encontrarlo por tanteo con un for y una gráfica.
 function [w] = wOpt(A)
 
-  w = 2/sqrt(1-spectral_radius(Tc(A,'j'))
+  w = 2/(1+sqrt(1-(spectral_radius(Tc(A,'Jac')))^2));
 
-endfunction
-
-
+  endfunction

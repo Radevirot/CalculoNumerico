@@ -108,10 +108,6 @@ Cortó por iteraciones
 Elapsed time is 3.51451 seconds.
 w = 0.9000
 >> %El omega cercano al óptimo encontrado es de 0.9, se utilizará el mismo con el método de SOR:
->> [xSOR itSOR rSOR] = SOR
-error: 'A' undefined near line 36, column 14
-error: called from
-    SOR at line 36 column 5
 >> [xSOR itSOR rSOR] = SOR(A, b, linspace(0,0,1000)',100,1e-5,0.9);
 Cortó por tolerancia
 Elapsed time is 0.329995 seconds.

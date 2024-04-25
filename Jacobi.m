@@ -35,7 +35,7 @@ function [x, it, r] = Jacobi(A,b,x0,maxit,tol)
       /A(i,i);
      endfor
 
-     r(it+1) = norm((A*x)-b); %me guardo el error actual (norma euclideana de Ax-b)
+     r(it+1) = norm((A*x)-b,inf); %me guardo el error actual (norma euclideana de Ax-b)
                               %en un vector de errores cuyas posiciones corresponden
                               %a las iteraciones
 

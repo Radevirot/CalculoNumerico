@@ -46,7 +46,7 @@ function [x, it, r] = SOR(A,b,x0,maxit,tol,w)
       /A(i,i));
      endfor
 
-     r(it+1) = norm((A*x)-b);
+     r(it+1) = norm((A*x)-b,inf);
 
      if r(it+1) < tol
        disp("Cortó por tolerancia")

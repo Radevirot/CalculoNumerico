@@ -1,19 +1,22 @@
-function [p] = biseccion(g,p0,tol,kmax)
-  i=1
+function [p, it, h, time] = puntofijo(g,p0,tol,kmax)
+  tic();
+  i=1;
 
   while i<kmax
 
     p = g(p0);
 
     if abs(p-p0) < tol     #corte por tamaño del intervalo
-      break;
+      time = toc();
+      return
     endif
 
     p0=p;
 
-    i+=1
+    i+=1;
 
   endwhile
 
-  disp("No converge en kmax iteraciones")
-
+  if i==kmax
+    disp("No converge en kmax iteraciones")
+  endif

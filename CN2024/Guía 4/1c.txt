@@ -1,0 +1,11 @@
+>> f = @(x) x.^3+x-4
+f =
+
+@(x) x .^ 3 + x - 4
+
+>> cota_biseccion(1,4,1e-3)
+ans = 11.551
+>> %Son 12 iteraciones.
+>> biseccion(f,1,4,1e-3,13)
+ans = 1.3787
+>>

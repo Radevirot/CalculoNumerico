@@ -23,6 +23,9 @@
 % las representaciones converja y en otras no, hacer un análisis detallado de
 % la situación.
 
+% Para determinar k, evaluar g' en los extremos del intervalo solicitado y revisar
+% la fluctuación del valor entre ellos, otra opción es hacerlo gráficamente.
+
 function [p, i, h, time] = puntofijo(g,p0,tol,kmax)
   tic();
   i=1;

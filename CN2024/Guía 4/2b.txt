@@ -1,0 +1,47 @@
+>> g1= @(x) (1/2).*(10-x.^3).^(1/2)
+g1 =
+
+@(x) (1 / 2) .* (10 - x .^ 3) .^ (1 / 2)
+
+>> g2 = @(x) (10./(4+x)).^(1/2)
+g2 =
+
+@(x) (10 ./ (4 + x)) .^ (1 / 2)
+
+>> graphFunction(g1,1,2,50,'b-')
+>> graphFunction(g2,1,2,50,'r-')
+>> fx = @(x) x
+fx =
+
+@(x) x
+
+>> graphFunction(fx,1,2,50,'g-')
+>> legend show
+>> legend('g1','g2','x')
+>> title('Funciones para punto fijo')
+>> [p1 i1 h1 t1] = puntofijo(g1,1.5,1e-3,100)
+cortó por tolerancia
+p1 = 1.3654
+i1 = 10
+h1 =
+
+ Columns 1 through 9:
+
+   2.1305e-01   1.1559e-01   5.7082e-02   2.9712e-02   1.5076e-02   7.7528e-03   3.9600e-03   2.0297e-03   1.0385e-03
+
+ Column 10:
+
+   5.3184e-04
+
+t1 = 4.0102e-04
+>> [p2 i2 h2 t2] = puntofijo(g2,1.5,1e-3,100)
+cortó por tolerancia
+p2 = 1.3653
+i2 = 4
+h2 =
+
+   1.5160e-01   1.8977e-02   2.4194e-03   3.0773e-04
+
+t2 = 4.0388e-04
+
+>> %Podemos observar que en ambos casos converge, esto es porque se verifica el teorema 1 para el segundo caso, y para el primero se verifica con un intervalo reducido que sigue contemplando la función ([1,1.5]). Además de eso, podemos observar que en el segundo caso converge más rápido, esto es porque el valor "k", es decir, el valor absoluto de la derivada en el punto, es menor para la segunda función, mientras más cerca esté k del 0, más rápida será la convergencia. Este análisis se realizó gráficamente.

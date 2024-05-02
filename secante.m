@@ -19,7 +19,7 @@ function [p, i, h, time] = secante(f, p0, p1, tol, kmax)
 
   while i<kmax
 
-    p = p1-(q1(p1-p0))/(q1-q0);
+    p = p1 - ( (q1*(p1-p0)) /(q1-q0));
 
     %h(i) = abs(f(p));    %criterio de parada por evaluación de la función
     h(i) = abs(p - p1); %criterio de parada absoluto entre iteraciones
@@ -31,7 +31,10 @@ function [p, i, h, time] = secante(f, p0, p1, tol, kmax)
       return
     endif
 
-    p0=p;
+    p0=p1;
+    q0=q1;
+    p1=p;
+    q1=f(p);
     i+=1;
 
   endwhile

@@ -1,0 +1,211 @@
+>> f = @(x) sin(x)+cos(1+x.^2)-1
+f =
+
+@(x) sin (x) + cos (1 + x .^ 2) - 1
+
+>> tol = 1e-10
+tol = 1.0000e-10
+>> graphFunction(f,0,20,200,'b-')
+>> graphFunction(f,0,8,200,'b-')
+>> graphFunction(f,1,7,200,'b-')
+>> a1 = 1.5
+a1 = 1.5000
+>> b1 = 2.25;
+>> a2 = 2.25;
+>> b2 = 2.75;
+>> a3 = 6.4; b3 = 6.455;
+>> a4 = 6.455; b4 = 6.65;
+>> a5 = 6.8; b5 = 7;
+>> [p1B it1] = biseccion(f,a1,b1,tol,500)
+cortó por tolerancia
+p1B = 1.9446
+it1 = 33
+>> .
+error: parse error:
+
+  syntax error
+
+>>> .
+    ^
+>> [p1B it1B] = biseccion(f,a1,b1,tol,500)
+cortó por tolerancia
+p1B = 1.9446
+it1B = 33
+>> [p2B it2B] = biseccion(f,a2,b2,tol,500)
+cortó por tolerancia
+p2B = 2.5322
+it2B = 33
+>> [p3B it3B] = biseccion(f,a3,b3,tol,500)
+no se cumple la regla de signos
+error: element number 1 undefined in return list
+>> f(b3)
+ans = -0.5763
+>> f(6.5)
+ans = -0.041239
+>> f(6.55)
+ans = 0.2605
+>> f(6.65)
+ans = -0.3168
+>> b3 = 6.55 ; a4 = 6.55
+a4 = 6.5500
+>> [p3B it3B] = biseccion(f,a3,b3,tol,500)
+cortó por tolerancia
+p3B = 6.5044
+it3B = 31
+>> [p3B it3B] = biseccion(f,a4,b4,tol,500)
+cortó por tolerancia
+p3B = 6.6196
+it3B = 30
+>> [p3B it3B] = biseccion(f,a5,b5,tol,500)
+cortó por tolerancia
+p3B = 6.9353
+it3B = 31
+>> [p4B it4B] = biseccion(f,a4,b4,tol,500)
+cortó por tolerancia
+p4B = 6.6196
+it4B = 30
+>> [p5B it5B] = biseccion(f,a5,b5,tol,500)
+cortó por tolerancia
+p5B = 6.9353
+it5B = 31
+>> [p1N it1N] = biseccion(f,a1,b1,tol,500)
+cortó por tolerancia
+p1N = 1.9446
+it1N = 33
+>> [p1N it1N] = newton_raphson(f,a1,tol,500)
+i = 1
+error: 'kmax' undefined near line 22, column 11
+error: called from
+    newton_raphson at line 22 column 10
+>> df = @(x) cos(x) - 2.*x.*sin(1+x.^2)
+df =
+
+@(x) cos (x) - 2 .* x .* sin (1 + x .^ 2)
+
+>> [p1N it1N] = newton_raphson(f,df,a1,tol,500)
+i = 1
+error: 'fd' undefined near line 24, column 18
+error: called from
+    newton_raphson at line 24 column 7
+>> [p1N it1N] = newton_raphson(f,df,a1,tol,500)
+i = 1
+cortó por iteraciones
+p1N = 4.0346
+it1N = 500
+>> [p1N it1N] = newton_raphson(f,df,1.7,tol,500)
+i = 1
+cortó por tolerancia
+p1N = 1.9446
+it1N = 5
+>> [p2N it2N] = newton_raphson(f,df,a2,tol,500)
+i = 1
+cortó por tolerancia
+p2N = -18.012
+it2N = 230
+>> [p2N it2N] = newton_raphson(f,df,2.3,tol,500)
+i = 1
+cortó por tolerancia
+p2N = 6.5044
+it2N = 24
+>> p2B
+p2B = 2.5322
+>> [p2N it2N] = newton_raphson(f,df,2.4,tol,500)
+i = 1
+cortó por tolerancia
+p2N = 2.5322
+it2N = 5
+>> [p3N it3N] = newton_raphson(f,df,6.9,tol,500)
+i = 1
+cortó por tolerancia
+p3N = 6.9353
+it3N = 4
+>> [p4B it4B] = biseccion(f,6.4,6.47,tol,500)
+no se cumple la regla de signos
+error: element number 1 undefined in return list
+>> f(6.47)
+ans = -0.3798
+>> f(6.46)
+ans = -0.5094
+>> f(6.48)
+ans = -0.2574
+>> f(6.49)
+ans = -0.1439
+>> f(6.55)
+ans = 0.2605
+>> [p4B it4B] = biseccion(f,6.4,6.55,tol,500)
+cortó por tolerancia
+p4B = 6.5044
+it4B = 31
+>> [p3B it3B] = biseccion(f,6.4,6.55,tol,500)
+cortó por tolerancia
+p3B = 6.5044
+it3B = 31
+>> [p4B it4B] = biseccion(f,a4,b4,tol,500)
+cortó por tolerancia
+p4B = 6.6196
+it4B = 30
+>> [p3N it3N] = newton_raphson(f,df,6.5,tol,500)
+i = 1
+cortó por tolerancia
+p3N = 6.5044
+it3N = 4
+>> [p4N it4N] = newton_raphson(f,df,6.6,tol,500)
+i = 1
+cortó por tolerancia
+p4N = 6.6196
+it4N = 5
+>> [p5N it5N] = newton_raphson(f,df,6.9,tol,500)
+i = 1
+cortó por tolerancia
+p5N = 6.9353
+it5N = 4
+>> [p1S it1S] = secante(f,1.7,f(1.7),tol,500)
+error: q1(-2.44111): subscripts must be either integers 1 to (2^63)-1 or logicals
+error: called from
+    secante at line 22 column 7
+>> [p1S it1S] = secante(f,1.7,f(1.7),tol,500)
+cortó por iteraciones
+p1S = 9.4835e+128
+it1S = 500
+>> [p1S it1S] = secante(f,1.5,f(1.5),tol,500)
+cortó por iteraciones
+p1S = 9.2549e+126
+it1S = 500
+>> [p1S it1S] = secante(f,1.5,1.7,tol,500)
+cortó por iteraciones
+p1S = -3.9774e+229
+it1S = 500
+>> [p1S it1S] = secante(f,1.9,2,tol,500)
+cortó por tolerancia
+p1S = 2.0000
+it1S = 36
+>> [p1S it1S] = secante(f,2.4,2.6,tol,500)
+cortó por tolerancia
+p1S = 2.6000
+it1S = 25
+>> [p1S it1S] = secante(f,2.4,2.6,tol,500)
+cortó por tolerancia
+p1S = 2.5322
+it1S = 7
+>> [p2S it2S] = secante(f,2.4,2.6,tol,500)
+cortó por tolerancia
+p2S = 2.5322
+it2S = 7
+>> [p1S it1S] = secante(f,1.5,1.7,tol,500)
+cortó por tolerancia
+p1S = 1.9446
+it1S = 8
+>> itS = [it1S it2S]'; itN = [it1N it2N]'; itB = [it1B it2B]'; A = [itB itN itS]
+A =
+
+   33    5    8
+   33    5    7
+
+>>
+>> A = [[p1B p2B]' A]
+A =
+
+    1.9446   33.0000    5.0000    8.0000
+    2.5322   33.0000    5.0000    7.0000
+
+>> %me enteré mientras lo hacía que solo eran las primeras dos raíces...

@@ -1,0 +1,39 @@
+>> f = @(x) x.*(ln(x+3)-17)-1
+f =
+
+@(x) x .* (ln (x + 3) - 17) - 1
+
+>> f(1)
+error: 'ln' undefined near line 1, column 14
+error: called from
+    @<anonymous> at line 1 column 25
+>> f = @(x) x.*(log(x+3)-17)-1
+f =
+
+@(x) x .* (log (x + 3) - 17) - 1
+
+>> f(1)
+ans = -16.614
+>> [a b] = g4ej7busqueda(f,100)
+encontró
+a = 1.6777e+07
+b = 3.3554e+07
+>> df = @(x) (x./(x+3))+log(x+3)-17
+df =
+
+@(x) (x ./ (x + 3)) + log (x + 3) - 17
+
+>> cota_biseccion(a,b,1e2)
+ans = 17.356
+>> p0 = biseccion(f,a,b,1e2,20)
+cortó por tolerancia
+p0 = 2.4155e+07
+>> [p it r t] = newton_raphson(f,df,p0,1e-12,1000)
+cortó por tolerancia
+p = 2.4155e+07
+it = 2
+r =
+
+   2.7959e-07   4.0098e-14
+
+t = 3.9101e-04

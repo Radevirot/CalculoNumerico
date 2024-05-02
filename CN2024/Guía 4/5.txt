@@ -1,0 +1,39 @@
+>> f = @(x) 4.*x.^3 + 2.*x - 2
+f =
+
+@(x) 4 .* x .^ 3 + 2 .* x - 2
+
+>> df = @(x) 12.*x.^2 + 2
+df =
+
+@(x) 12 .* x .^ 2 + 2
+
+>> graphFunction(f,-10,10,100,'b-')
+>> graphFunction(f,-100,100,1000,'b-')
+>> ddf = df
+ddf =
+
+@(x) 12 .* x .^ 2 + 2
+
+>> df = f
+df =
+
+@(x) 4 .* x .^ 3 + 2 .* x - 2
+
+>> f = (x-1).^2 + x.^4
+error: 'x' undefined near line 1, column 6
+>> f = @(x) (x-1).^2 + x.^4
+f =
+
+@(x) (x - 1) .^ 2 + x .^ 4
+
+>> graphFunction(f,-100,100,1000,'b-')
+>> [p,i,r,t] = newton_raphson(df,ddf,0.5,1e-4,100)
+cortó por tolerancia
+p = 0.5898
+i = 4
+r =
+
+   1.0000e-01   1.0127e-02   1.1889e-04   1.6205e-08
+
+t = 2.9016e-04

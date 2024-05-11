@@ -35,9 +35,17 @@ function [x, it, r] = Jacobi(A,b,x0,maxit,tol)
       /A(i,i);
      endfor
 
-     r(it+1) = norm((A*x)-b,inf); %me guardo el error actual (norma euclideana de Ax-b)
-                              %en un vector de errores cuyas posiciones corresponden
-                              %a las iteraciones
+     r(it+1) = norm(b-(A*x));     % Residuo de la ecuación, norma euclídea
+     %r(it+1) = norm(b-(A*x),inf); % Residuo de la ecuación, norma infinito
+     %r(it+1) = norm(b-(A*x),1);   % Residuo de la ecuación, norma L1
+
+     %r(it+1) = norm(x-x0);      % Error absoluto entre iteraciones, norma euclídea
+     %r(it+1) = norm(x-x0,inf);  % Error absoluto entre iteraciones, norma infinito
+     %r(it+1) = norm(x-x0,1);    % Error absoluto entre iteraciones, norma L1
+
+     %r(it+1) = norm(x-x0)/norm(x);          % Error relativo entre iteraciones, norma euclídea
+     %r(it+1) = norm(x-x0,inf)/norm(x,inf);  % Error relativo entre iteraciones, norma infinito
+     %r(it+1) = norm(x-x0,1)/norm(x,1);      % Error relativo entre iteraciones, norma L1
 
      if r(it+1) < tol
        disp("Cortó por tolerancia")

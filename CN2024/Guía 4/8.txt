@@ -1,0 +1,185 @@
+>> f = @(t) ((t+1/3).^3 + 1/3).*e.^(-t) - 1.5
+f =
+
+@(t) ((t + 1 / 3) .^ 3 + 1 / 3) .* e .^ (-t) - 1.5
+
+>> f(2)
+ans = 0.2644
+>> graphFunction(f,-50,50,1000,'b-')
+>> graphFunction(f,0,50,1000,'b-')
+>> graphFunction(f,0,10,1000,'b-')
+>> [p1, i1, h1, time1] = biseccion(f,1,3,1e-5,100)
+cortó por tolerancia
+p1 = 1.5649
+i1 = 18
+h1 =
+
+ Columns 1 through 9:
+
+   1.0000e+00   5.0000e-01   2.5000e-01   1.2500e-01   6.2500e-02   3.1250e-02   1.5625e-02   7.8125e-03   3.9062e-03
+
+ Columns 10 through 18:
+
+   1.9531e-03   9.7656e-04   4.8828e-04   2.4414e-04   1.2207e-04   6.1035e-05   3.0518e-05   1.5259e-05   7.6294e-06
+
+time1 = 1.1120e-03
+>> format long
+>> p1
+p1 = 1.564918518066406
+>> graphFunction(f,0,10,1000,'b-')
+>> [p2, i2, h2, time2] = biseccion(f,3,4,1e-5,100)
+cortó por tolerancia
+p2 = 3.992362976074219
+i2 = 17
+h2 =
+
+ Columns 1 through 4:
+
+   5.000000000000000e-01   2.500000000000000e-01   1.250000000000000e-01   6.250000000000000e-02
+
+ Columns 5 through 8:
+
+   3.125000000000000e-02   1.562500000000000e-02   7.812500000000000e-03   3.906250000000000e-03
+
+ Columns 9 through 12:
+
+   1.953125000000000e-03   9.765625000000000e-04   4.882812500000000e-04   2.441406250000000e-04
+
+ Columns 13 through 16:
+
+   1.220703125000000e-04   6.103515625000000e-05   3.051757812500000e-05   1.525878906250000e-05
+
+ Column 17:
+
+   7.629394531250000e-06
+
+time2 = 8.890628814697266e-04
+>> graphFunction(f,0,10,1000,'b-')
+>> [p2, i2, h2, time2] = biseccion(f,3,5,1e-5,100)
+cortó por tolerancia
+p2 = 3.992362976074219
+i2 = 18
+h2 =
+
+ Columns 1 through 4:
+
+   1.000000000000000e+00   5.000000000000000e-01   2.500000000000000e-01   1.250000000000000e-01
+
+ Columns 5 through 8:
+
+   6.250000000000000e-02   3.125000000000000e-02   1.562500000000000e-02   7.812500000000000e-03
+
+ Columns 9 through 12:
+
+   3.906250000000000e-03   1.953125000000000e-03   9.765625000000000e-04   4.882812500000000e-04
+
+ Columns 13 through 16:
+
+   2.441406250000000e-04   1.220703125000000e-04   6.103515625000000e-05   3.051757812500000e-05
+
+ Columns 17 and 18:
+
+   1.525878906250000e-05   7.629394531250000e-06
+
+time2 = 8.859634399414062e-04
+>> % a)
+>> [p1 ; p2]
+ans =
+
+   1.564918518066406
+   3.992362976074219
+
+>> df = @(t) (1/27).*e.^(-t).*(-27.*t.^3+54.*t.^2+45.*t-1)
+df =
+
+@(t) (1 / 27) .* e .^ (-t) .* (-27 .* t .^ 3 + 54 .* t .^ 2 + 45 .* t - 1)
+
+>> ddf = @(t) (1/27).*e.^(-t).*(27.*t.^3-135.*t.^2+63.*t+46)
+ddf =
+
+@(t) (1 / 27) .* e .^ (-t) .* (27 .* t .^ 3 - 135 .* t .^ 2 + 63 .* t + 46)
+
+>> dddf = @(t) (1/27).*e.^(-t).*(-27.*t.^3+216.*t.^2-333.*t+17)
+dddf =
+
+@(t) (1 / 27) .* e .^ (-t) .* (-27 .* t .^ 3 + 216 .* t .^ 2 - 333 .* t + 17)
+
+>> graphFunction(df,0,100,1000,'b-')
+>> graphFunction(df,0,10,1000,'b-')
+>> graphFunction(df,-5,10,1000,'b-')
+>> graphFunction(df,-1,10,1000,'b-')
+>> graphFunction(df,-0.5,4,1000,'b-')
+>> graphFunction(ddf,-0.5,4,1000,'r-')
+>> legend show
+>> legend('df','ddf')
+>> % Si bien se puede observar que hay una raíz en la parte negativa de la derivada de la función, solamente nos inte
+resa la parte positiva ya que la otra correspondería a un tiempo negativo.
+>> % Podemos ver que hay dos ceros en la función, uno cerca del cero y otro entre el 2 y el 3. Nos interesa el cero tal
+ que su derivada sea negativa, ya que este es el máximo local de la función original.
+>>l
+>>l
+>> [pM, iM, hM, timeM] = biseccion(df,2,3,1e-5,100)
+cortó por tolerancia
+pM = 2.628669738769531
+iM = 17
+hM =
+
+ Columns 1 through 4:
+
+   5.000000000000000e-01   2.500000000000000e-01   1.250000000000000e-01   6.250000000000000e-02
+
+ Columns 5 through 8:
+
+   3.125000000000000e-02   1.562500000000000e-02   7.812500000000000e-03   3.906250000000000e-03
+
+ Columns 9 through 12:
+
+   1.953125000000000e-03   9.765625000000000e-04   4.882812500000000e-04   2.441406250000000e-04
+
+ Columns 13 through 16:
+
+   1.220703125000000e-04   6.103515625000000e-05   3.051757812500000e-05   1.525878906250000e-05
+
+ Column 17:
+
+   7.629394531250000e-06
+
+timeM = 8.602142333984375e-04
+>> % el la máxima energía está en pM
+
+>> graphFunction(f,-0.5,4,1000,'g-')
+>> plot(pM,pM)
+>> plot(pM,f(pM),'x')
+>> legend('df','ddf','f','---','pM')
+>> % para la máxima tasa de crecimiento miramos cuál es el valor de df más alto, para ello encontramos el cero de dd
+f (cerca de x=1)
+>> [pMtc, iMtc, hMtc, timeMtc] = biseccion(ddf,0.5,1.5,1e-5,100)
+cortó por tolerancia
+pMtc = 1.007911682128906
+iMtc = 17
+hMtc =
+
+ Columns 1 through 4:
+
+   5.000000000000000e-01   2.500000000000000e-01   1.250000000000000e-01   6.250000000000000e-02
+
+ Columns 5 through 8:
+
+   3.125000000000000e-02   1.562500000000000e-02   7.812500000000000e-03   3.906250000000000e-03
+
+ Columns 9 through 12:
+
+   1.953125000000000e-03   9.765625000000000e-04   4.882812500000000e-04   2.441406250000000e-04
+
+ Columns 13 through 16:
+
+   1.220703125000000e-04   6.103515625000000e-05   3.051757812500000e-05   1.525878906250000e-05
+
+ Column 17:
+
+   7.629394531250000e-06
+
+timeMtc = 1.035928726196289e-03
+>> pMtc
+pMtc = 1.007911682128906
+>> %la máxima tasa de crecimiento de la función está en pMtc

@@ -1,0 +1,42 @@
+>> P = 1.0326e+4
+
+P = 10326
+>> E = 210e+3
+
+E = 210000
+>> J = (0.07*0.14^3)/12
+
+J = 1.6007e-05
+>> fj = P/(E*J)
+
+fj = 3071.9
+>> [A, b, x0] = MatrizVigaBiEmpotrada(25, 5, fj);
+
+>> spectral_radius(Tc(A,'Jac'))
+
+ans = 1.6425
+>> spectral_radius(Tc(A,'GaS'))
+
+ans = 0.9995
+>> [xJ, itJ, rJ, tJ] = Jacobi(A,b,x0,20000,1e-8);
+
+Cortó por iteraciones
+>> [xGS, itGS, rGS, tGS] = GaussSeidel(A,b,x0,200000,1e-8);
+
+Cortó por tolerancia
+>> wTanteo = wTanteo(A)
+
+wTanteo = 1.8600
+>> [xSOR, itSOR, rSOR, tSOR] = SOR(A,b,x0,50000,1e-8,wTanteo);
+
+Cortó por tolerancia
+>> itGS
+itGS = 42458
+>> itSOR
+itSOR = 1973
+>> gauss_v(A,b);
+Elapsed time is 0.00241804 seconds.
+>> gauss_p(A,b);
+>> % faltaría añadirle dos ceros al comienzo y al final de los vectores solución
+>> %jacobi no converge porque el radio espectral de la matriz de iteración es mayor a 1
+>> %wTanteo busca aquel omega cuyo radio espectral de la matriz de iteración sea el menor posible

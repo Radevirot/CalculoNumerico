@@ -27,7 +27,7 @@ function [x] = gauss_p(A,b)
                       %más de una posición con valor máximo, se elije la primera de ellas
 
     if pos!=k                %si el pivote más grande está en otro lado ↓
-      r([pos k])= r([k pos]) %intercambiamos las "filas", realmente son las
+      r([pos k])= r([k pos]); %intercambiamos las "filas", realmente son las
                              %posiciones dentro del vector de posiciones
     endif
 

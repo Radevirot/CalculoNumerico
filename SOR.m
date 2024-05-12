@@ -11,7 +11,7 @@
 
 %Es importante tener en cuenta que esta función sólo se puede utilizar con
 %matrices cuya matriz de iteración Tc (dependiente del método iterativo) tenga
-%un radio espectral menor a 1. → spectral_radius(Tc(A,'sor',w)) < 1
+%un radio espectral menor a 1. → spectral_radius(Tc(A,'SOR',w)) < 1
 
 %Otro posible análisis de convergencia es revisar si la matriz es estrictamente
 %diagonal dominante. En caso de serlo, se sabe que el método iterativo converge.
@@ -31,7 +31,7 @@
 %que las perturbaciones pequeñas no causan grandes cambios en el resultado.
 
 
-function [x, it, r] = SOR(A,b,x0,maxit,tol,w)
+function [x, it, r, t] = SOR(A,b,x0,maxit,tol,w)
   tic();
   n = length(A(1,:));
   x = x0;
@@ -39,14 +39,10 @@ function [x, it, r] = SOR(A,b,x0,maxit,tol,w)
 
   while it < maxit
     for i = 1:n
-      x(i) = ((1-w)*x0(i))...
-      +(w*(b(i)...
-      -A(i,1:i-1)*x(1:i-1)...
-      -A(i,i+1:n)*x0(i+1:n))...
-      /A(i,i));
+      x(i) = ((1-w)*x0(i))+ w*(b(i)-A(i,1:i-1)*x(1:i-1)-A(i,i+1:n)*x0(i+1:n))/A(i,i);
      endfor
 
-     r(it+1) = norm(b-(A*x));     % Residuo de la ecuación, norma euclídea
+     %r(it+1) = norm(b-(A*x));     % Residuo de la ecuación, norma euclídea
      %r(it+1) = norm(b-(A*x),inf); % Residuo de la ecuación, norma infinito
      %r(it+1) = norm(b-(A*x),1);   % Residuo de la ecuación, norma L1
 
@@ -55,7 +51,7 @@ function [x, it, r] = SOR(A,b,x0,maxit,tol,w)
      %r(it+1) = norm(x-x0,1);    % Error absoluto entre iteraciones, norma L1
 
      %r(it+1) = norm(x-x0)/norm(x);          % Error relativo entre iteraciones, norma euclídea
-     %r(it+1) = norm(x-x0,inf)/norm(x,inf);  % Error relativo entre iteraciones, norma infinito
+     r(it+1) = norm(x-x0,inf)/norm(x,inf);  % Error relativo entre iteraciones, norma infinito
      %r(it+1) = norm(x-x0,1)/norm(x,1);      % Error relativo entre iteraciones, norma L1
 
      if r(it+1) < tol
@@ -72,5 +68,5 @@ function [x, it, r] = SOR(A,b,x0,maxit,tol,w)
     disp("Cortó por iteraciones")
   endif
 
-  toc()
+  t=toc();
 

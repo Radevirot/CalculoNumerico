@@ -47,6 +47,7 @@ function [x, it, r, t] = Jacobi(A,b,x0,maxit,tol)
      r(it+1) = norm(x-x0,inf)/norm(x,inf);  % Error relativo entre iteraciones, norma infinito
      %r(it+1) = norm(x-x0,1)/norm(x,1);      % Error relativo entre iteraciones, norma L1
 
+
      if r(it+1) < tol
        disp("Cortó por tolerancia")
        break;

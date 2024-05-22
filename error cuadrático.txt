@@ -1,0 +1,1 @@
+Ec = norm(Y-P6(x_i))

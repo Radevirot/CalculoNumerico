@@ -1,0 +1,20 @@
+>> x = [-1 0 1 2]; y = [-1.1 -0.4 -0.9 -2.7];
+>> lny = log(-y)
+lny =
+
+   0.095310  -0.916291  -0.105361   0.993252
+
+>> p2 = polyfit(x,lny,2)
+p2 =
+
+   0.5276  -0.1771  -0.6861
+>> fx = @(x) -exp(p2(1).*x.^2+p2(2).*x+p2(3))
+fx =
+
+@(x) -exp (p2 (1) .* x .^ 2 + p2 (2) .* x + p2 (3))
+
+>> xx = linspace(-1.5,3.5,101);
+>> plot(x,y,'or'); hold on; grid on; grid minor
+>> plot(xx,fx(xx),'-b');
+>> legend show
+>> legend('puntos','-e^(p2)')

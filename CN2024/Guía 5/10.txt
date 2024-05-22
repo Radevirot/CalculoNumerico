@@ -1,0 +1,36 @@
+lny =
+
+   7.3715   7.1854   6.9078   6.8024   6.4770   6.3279
+
+>> p1 = polyfit(x,lny,1)
+
+p1 =
+
+  -0.053203   7.590159
+
+>> k = p1(1); b = p1(2);
+
+>> cx = @(x) exp(b).*exp(k.*x)
+
+cx =
+
+@(x) exp (b) .* exp (k .* x)
+
+>> t = linspace(0,24,201);
+
+>> plot(x,y,'ro'); hold on; grid on; grid minor; %A
+
+>> plot(t,cx(t),'b-'); %A
+
+>> final_tormenta = cx(0)
+
+final_tormenta = 1978.6  %B
+>> gx = @(x) cx(x) - 200
+gx =
+
+@(x) cx (x) - 200
+
+>> tc200 = biseccion(gx,20,50,1e-8,1000);
+cortó por tolerancia
+>> tc200
+tc200 = 43.078  %C

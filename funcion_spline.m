@@ -1,4 +1,4 @@
-function [S,dS,ddS]=funcion_spline(x1,y1,df1,df2)
+function [S]=funcion_spline(x1,y1,df1,df2)
 
 if (nargin==2)
   [a,b,c,d] = cubic_spline_natural(x1,y1);
@@ -11,7 +11,7 @@ else
 endif
 S=@(x) a(1)*(x==x1(1));
 ddS= @(x) (2*c(1))*(x==x1(1));
-M=[d c b a];
+M=[d ; c ; b ; a]';
 dM=[];ddM=[];
 for i=1:length(x1)-1
   dM=[dM;polyder(M(i,:))];

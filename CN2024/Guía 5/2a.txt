@@ -1,0 +1,27 @@
+>> x = [3 5 7 9]
+
+x =
+
+   3   5   7   9
+
+>> y = [1.2 1.7 2.0 2.1]
+
+y =
+
+   1.2000   1.7000   2.0000   2.1000
+
+>> Pl = Lagrange(x,y)
+Pl =
+
+        0  -0.0250   0.4500   0.0750
+
+>> Pn = PolIntNewton(x,y)
+c =
+
+   1.2000   0.2500  -0.0250        0
+
+Pn =
+
+        0  -0.0250   0.4500   0.0750
+
+>> %Lo que pide no es utilizar los códigos, pero lo hice para ahorrar tiempo ya que es poco probable que evalúen cosas teóricas.

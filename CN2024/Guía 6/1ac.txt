@@ -1,0 +1,78 @@
+>> f = @(x) exp(x) - 2.*x.^2 + 3.*x -1
+f =
+
+@(x) exp (x) - 2 .* x .^ 2 + 3 .* x - 1
+
+>> df = @(x) exp(x) - 4.*x + 3
+df =
+
+@(x) exp (x) - 4 .* x + 3
+
+>> h = [linspace(10^(-11),10^(-10),5) linspace(10^(-10),10^(-9),5) linspace(10^(-9),10^(-8),5) linspace(10^(-8),10^(-7),5) linspace(10^(-7),10^
+(-6),5) linspace(10^(-6),10^(-5),5) linspace(10^(-5),10^(-4),5) linspace(10^(-4),10^(-3),5) linspace(10^(-3),10^(-2),5) linspace(10^(-2),10^(-1
+),5)] %tuve q hacer esto porque no sé qué mierda le pasaba al linspace que no los hacía equi-espaciados...
+h =
+
+ Columns 1 through 11:
+
+   1.0000e-11   3.2500e-11   5.5000e-11   7.7500e-11   1.0000e-10   1.0000e-10   3.2500e-10   5.5000e-10   7.7500e-10   1.0000e-09   1.0000e-09
+
+ Columns 12 through 22:
+
+   3.2500e-09   5.5000e-09   7.7500e-09   1.0000e-08   1.0000e-08   3.2500e-08   5.5000e-08   7.7500e-08   1.0000e-07   1.0000e-07   3.2500e-07
+
+ Columns 23 through 33:
+
+   5.5000e-07   7.7500e-07   1.0000e-06   1.0000e-06   3.2500e-06   5.5000e-06   7.7500e-06   1.0000e-05   1.0000e-05   3.2500e-05   5.5000e-05
+
+ Columns 34 through 44:
+
+   7.7500e-05   1.0000e-04   1.0000e-04   3.2500e-04   5.5000e-04   7.7500e-04   1.0000e-03   1.0000e-03   3.2500e-03   5.5000e-03   7.7500e-03
+
+ Columns 45 through 50:
+
+   1.0000e-02   1.0000e-02   3.2500e-02   5.5000e-02   7.7500e-02   1.0000e-01
+
+>> dpf = @(x) (f(x+h) - f(x))/h
+dpf =
+
+@(x) (f (x + h) - f (x)) / h
+
+>> loglog(h,abs(f(0)-dpf(0)))
+>> dpf(0)
+ans = 3.8785
+>> dpf = @(x) (f(x+h) - f(x))./h
+dpf =
+
+@(x) (f (x + h) - f (x)) ./ h
+
+>> dpf(0)
+ans =
+
+ Columns 1 through 15:
+
+   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000
+
+ Columns 16 through 30:
+
+   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000   4.0000
+
+ Columns 31 through 45:
+
+   4.0000   4.0000   3.9999   3.9999   3.9999   3.9999   3.9995   3.9992   3.9988   3.9985   3.9985   3.9951   3.9918   3.9884   3.9850
+
+ Columns 46 through 50:
+
+   3.9850   3.9514   3.9180   3.8848   3.8517
+
+>> loglog(h,abs(df(0)-dpf(0)))
+>> hold on; grid on; grid minor; loglog(h,abs(df(0)-dpf(0)),'ok','markerfacecolor','k')
+>> tpf = @(x) (f(x+h)-f(x-h))./(2.*h)
+tpf =
+
+@(x) (f (x + h) - f (x - h)) ./ (2 .* h)
+
+>> loglog(h,abs(df(0)-tpf(0)),'g')
+>> loglog(h,abs(df(0)-tpf(0)),'xk')
+>> legend('Dos puntos','dots','Tres puntos','dots')
+>> legend('location','northwest')

@@ -1,4 +1,5 @@
-function [fun, res] = DifDivNewton(x,fx,a)
+% function [fun, res] = DifDivNewton(x,fx,a)
+function [fun] = DifDivNewton(x,fx)
 
   % ARMAR TABLA
 
@@ -30,7 +31,7 @@ function [fun, res] = DifDivNewton(x,fx,a)
     fun = fun + mul*A(1,i+2);
   endfor
 
-  res = subs(fun,a);
+  %res = subs(fun,a);
   fun = expand(fun);
 
   endfunction

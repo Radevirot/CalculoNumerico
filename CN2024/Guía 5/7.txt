@@ -1,0 +1,15 @@
+>> x1 = [0 2 6]; y1 = [0 4 6] ; x2 = [6 3 0] ; y2 = [6 2 0];
+>> xvy1 = funcion_spline(x1,y1,0,0); xvy2 = funcion_spline(x2,y2,0,0);
+>> plot(x1,y1,'linewidth',2,'g-'); hold on; grid on; plot(x,y,'ko','markerfacecolor','k')
+>> plot(x2,y2,'linewidth',2,'r-')
+>> legend show; legend('Ida','Puntos','Vuelta')
+>> legend('location','northwest')
+>> title('Gráfica de X vs Y')
+>> xvt1 = funcion_spline([0 1 2],x1,0,0); xvt2 = funcion_spline([2 3 4],x2,0,0);
+>> graphFunction(xvt1,0,2,100,'b-')
+>> graphFunction(xvt2,2,4,100,'b-')
+>> title('Gráfica X vs T')
+>> yvt1 = funcion_spline([0 1 2],y1,0,0); yvt2 = funcion_spline([2 3 4],y2,0,0);
+>> graphFunction(yvt1,0,2,100,'r-')
+>> graphFunction(yvt2,2,4,100,'r-')
+>> title('Gráfica Y vs T')

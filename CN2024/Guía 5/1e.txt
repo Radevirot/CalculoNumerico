@@ -1,0 +1,29 @@
+- Forma de Newton del Polinomio Interpolante
+
+  ▶ Ventajas
+    ● Útil para situaciones con un número bajo de puntos para interpolar.
+    ● Permite agregar nuevos puntos o nodos sin recalcular todo el polinomio, gracias a su relación de recurrencia.
+
+  ▶ Desventajas
+    ● A medida que aumenta el número de puntos, también lo hace el grado del polinomio, lo que puede ser costoso computacionalmente.
+
+- Forma de Lagrange del Polinomio Interpolante
+
+  ▶ Ventajas
+    ● Simplicidad de implementación.
+    ● Funciona bien para funciones suaves.
+
+  ▶ Desventajas
+    ● Si se aumenta el número de puntos a interpolar, también aumenta el grado del polinomio interpolante.
+    ● No es eficiente para todas las funciones.
+    ● Es sensible a pequeñas perturbaciones en los datos.
+
+- Método de Coeficientes Indeterminados
+
+  ▶ Ventajas
+    ● Fácil de aplicar cuando f(x) es un polinomio, una exponencial, seno, coseno o una combinación lineal de estas funciones.
+
+  ▶ Desventajas
+    ● Solo funciona para ciertos tipos de funciones.
+    ● No es aplicable a todas las ecuaciones no homogéneas.
+

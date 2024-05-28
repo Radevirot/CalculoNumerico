@@ -1,0 +1,48 @@
+>> x = [0 1 2 3 4 5 6]; y = [432 599 1012 1909 2977 4190 5961]
+y =
+
+    432    599   1012   1909   2977   4190   5961
+
+>> p6 = polyfit(x,y,6)
+p6 =
+
+    -0.9528    21.2750  -173.7778   636.2083  -858.7694   543.0167   432.0000
+
+>> p1 = polyfit(x,y,1)
+p1 =
+
+   919.07  -317.21
+
+>> p2 = polyfit(x,y,2)
+p2 =
+
+   147.167    36.071   418.619
+
+>> p1x = @(x) polyval(p1,x)
+p1x =
+
+@(x) polyval (p1, x)
+
+>> p2x = @(x) polyval(p2,x)
+p2x =
+
+@(x) polyval (p2, x)
+
+>> p6x = @(x) polyval(p6,x)
+p6x =
+
+@(x) polyval (p6, x)
+
+>> graphFunction(p1x,0,10,100,'-b')
+>> graphFunction(p2x,0,10,100,'-r')
+>> graphFunction(p6x,0,10,100,'-g')
+>> plot(x,y,'ok','markerfacecolor','k')
+>> plot(10,14900,'ok','markerfacecolor','y')
+>> legend show; legend('p1','p2','p6','Puntos','Nueva Medición'); legend('location','northwest')
+>> title('Ajustes por mínimos cuadrados')
+>> error_rel_p1 = abs(14900-p1x(10))/14900
+error_rel_p1 = 0.4045
+>> error_rel_p2 = abs(14900-p2x(10))/14900
+error_rel_p2 = 0.040000
+>> error_rel_p6 = abs(14900-p6x(10))/14900
+error_rel_p6 = 1.4605

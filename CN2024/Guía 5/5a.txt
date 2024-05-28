@@ -1,0 +1,37 @@
+>> f = @(x) sin(2*pi.*x)
+
+f =
+
+@(x) sin (2 * pi .* x)
+
+>> xx= linspace(-1,1,21);
+
+>> pL = Lagrange(xx,f(xx))
+
+pL =
+
+ Columns 1 through 11:
+
+    0.0000   -0.0084   -0.0000    0.0987   -0.0000   -0.7135   -0.0000    3.8176   -0.0000  -15.0939   -0.0000
+
+ Columns 12 through 21:
+
+   42.0586    0.0000  -76.7058    0.0000   81.6052    0.0000  -41.3417    0.0000    6.2832         0
+
+>> [S] = funcion_spline(xx,f(xx))
+
+S =
+
+@(x) S (x) + polyval (M (i, :), x - x1 (i)) .* (x > x1 (i)) .* (x <= x1 (i + 1))
+
+>> pLx = @(x) polyval(pL,x)
+pLx =
+
+@(x) polyval (pL, x)
+
+>> graphFunction(f,-1,1,1000,'b-')
+>> graphFunction(pLx,-1,1,1000,'r-')
+>> graphFunction(S,-1,1,1000,'g-')
+>> legend show
+>> plot(xx,f(xx),'ko')
+>> legend('Función','Lagrange','Spline','Puntos')

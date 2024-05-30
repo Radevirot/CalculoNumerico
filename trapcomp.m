@@ -5,5 +5,5 @@ function Q = trapcomp(x,y)
     h = x(i+1)- x(i);
     Q+= h*(y(i+1)+y(i));
   endfor
-  Q /=2;
+  Q/=2;
 endfunction

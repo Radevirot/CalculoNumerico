@@ -1,0 +1,27 @@
+>> f = @(x) 20.*x-(x.^3)./5
+f =
+
+@(x) 20 .* x - (x .^ 3) ./ 5
+
+>> df = @(x) 20-(3.*x.^2)./5
+df =
+
+@(x) 20 - (3 .* x .^ 2) ./ 5
+
+>> fc = @(x) 2.*pi.*f(x).*sqrt(1+df(x).^2)
+fc =
+
+@(x) 2 .* pi .* f (x) .* sqrt (1 + df (x) .^ 2)
+
+>> fc(2)
+ans = 4253.3
+>> Q_g3 = cuad_gauss_c(fc,0,2,1,3)
+Q_g3 = 4639.0
+>> Q_nc3 = intNCcompuesta(fc,0,2,1,3)
+Q_nc3 = 4640.0
+>> Q_nc2 = intNCcompuesta(fc,0,2,5,2)
+Q_nc2 = 4623.7
+>> Q_nc3 = intNCcompuesta(fc,0,2,5,3)
+Q_nc3 = 4639.0
+>> quad_aprox = quad(fc,0,2)
+quad_aprox = 4639.0

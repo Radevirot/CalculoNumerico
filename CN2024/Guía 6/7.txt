@@ -1,0 +1,23 @@
+>> x = [0 200 400 600 800 100 1200]; ro = [4 3.95 3.89 3.8 3.6 3.41 3.3]; Ac = [100 103 106 110 120 133 149.6];
+>> y = ro.*Ac;
+>> p6x = Lagrange(x,y)
+p6x =
+
+  -4.3601e-14   1.3928e-10  -1.6502e-07   9.0167e-05  -2.2464e-02   2.0315e+00   4.0000e+02
+
+>> p6 = Lagrange(x,y);
+>> p6v = @(v) polyval(p6,v);
+>> graphFunction(p6v,0,1200,1000,'b-')
+>> plot(x,y,'ko','markerfacecolor','k')
+>> Q_t = intNCcompuesta(p6v,0,1200,6,2) %trapecio con 6 sub-intervalos
+Q_t = 5.8210e+05
+>> Q_s = intNCcompuesta(p6v,0,1200,6,3) %simpson con 6 sub-intervalos
+Q_s = 6.1707e+05
+>> I_t = trapcomp(x,y) %trapecio con datos
+I_t = 541668
+>> I_s = simpsoncomp(x,y) %simpson con datos
+I_s = 5.1306e+05
+>> err_rel_t = abs(Q_t-I_t)/abs(Q_t)
+err_rel_t = 0.069459
+>> err_rel_s = abs(Q_s-I_s)/abs(Q_s)
+err_rel_s = 0.1686

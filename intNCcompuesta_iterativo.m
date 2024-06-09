@@ -5,7 +5,7 @@ function [Q, it, h, t] = intNCcompuesta_iterativo(f,a,b,L0,n,tol,kmax)
   % grado del polinomio interpolante (2 = trapecio, 3 = simpson), una tolerancia y
   % una cantidad máxima de iteraciones.
 
-  i=2;
+  i=1;
   Q0 = intNCcompuesta(f,a,b,L0,n);
   L = L0*2;
   while i<kmax

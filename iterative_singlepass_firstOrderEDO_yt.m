@@ -1,5 +1,7 @@
 function [t, y, L, i, h] = iterative_singlepass_firstOrderEDO_yt(method,f,inter,y0,L0,tol,kmax,yt)
 
+  %compara con el valor dado, yt.
+
   i=0;
   L = L0;
   while i<kmax
@@ -16,8 +18,8 @@ function [t, y, L, i, h] = iterative_singlepass_firstOrderEDO_yt(method,f,inter,
     endswitch
 
 
-    h(i+1) = abs(yt - y(L+1)); %criterio de parada absoluto entre iteraciones
-    %h(i+1) = abs(yt - y(L+1))/abs(yt); %criterio de parada relativo entre iteraciones
+    h(i+1) = abs(yt - y(L+1,1)); %criterio de parada absoluto
+    %h(i+1) = abs(yt - y(L+1,1))/abs(yt); %criterio de parada relativo
 
     if h(i+1) < tol
       disp('cortó por tolerancia')

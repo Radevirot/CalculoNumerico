@@ -64,7 +64,8 @@ p1t = @(t) polyval(p1, t);
 graphFunction(p1t,0,180,1000,'r-');
 
 %ahora, en p1t usamos bisección, entre t=130 y t=160.
-tiempo_ascenso_ajuste = biseccion(p1t,130,160,1e-6,100)
+tiempo_ascenso_ajuste = biseccion(p1t,130,160,1e-6,100);
+p = newton_raphson(f, df, p0, tol, kmax)
 %y evaluamos p2t en ese valor de t.
 altura_maxima_ajuste = p2t(tiempo_ascenso_ajuste)
 

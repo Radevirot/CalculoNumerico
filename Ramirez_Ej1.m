@@ -1,37 +1,21 @@
-format long
+clear all; clc; format long;
 
-% a)
+t = [1 2 3 4 5 6 7 8 9 10 11 12]';
+y = [26.5 25 23.3 20.6 17.3 14.7 14.2 15.6 17.7 20.9 22.2 25.3]';
 
-fm = @(m) 9.8.*m.*(1-e.^(-(15./m).*9)) - 15*35
-dfm = @(m) (e.^(-135./m)).*((-1323./m)-9.8)+9.8
+f1 = @(t) t;
+f2 = @(t) ones(size(t));
+f3 = @(t) sin((pi/6).*t);
+f4 = @(t) cos((pi/6).*t);
 
-fm(1)
-fm(100)
+M = [f1(t) f2(t) f3(t) f4(t)];
 
-% Podemos observar que la raíz está entre 1 y 100, no consideramos
-% números negativos por la naturaleza del problema (la masa no puede ser negativa)
+A = M'*M; b = M'*y;
 
-pm_0 = biseccion(fm,0,100,1e-2,1000);
-[pm, im, hm, timem] = newton_raphson(fm, dfm, pm_0, 1e-5, 1000);
-pm
+c = A\b
 
-% b)
+ft = @(t) c(1).*f1(t) + c(2).*f2(t) + c(3).*f3(t) + c(4).*f4(t);
 
-fc = @(c) 9.8.*65.*(1-e.^(-(c./65).*9)) - c*35
-dfc = @(c) 88.2.*e.^(-(9.*c)./65)-35
-
-fc(14)
-fc(20)
-fc(17)
-
-% Pruebo valores cercanos al coeficiente de arrastre del inciso a, debido a
-% que el valor de m dado para el inciso b es cercano al obtenido.
-
-pc_0 = biseccion(fc,14,17,1e-2,1000);
-[pc, ic, hc, timec] = newton_raphson(fc, dfc, pc_0, 1e-5, 1000);
-
-% Todos los métodos utilizados tienen como tolerancia el error absoluto entre dos
-% iteraciones sucesivas.
-
-pm
-pc
+error_cuad_abs = abs(26.5 - ft(1))
+temp_med_enero_2020 = ft(13)
+error_rel = abs(27.7 - temp_med_enero_2020)/abs(27.7)

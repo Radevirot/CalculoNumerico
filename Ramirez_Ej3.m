@@ -1,25 +1,10 @@
-format long
+clear all; clc; format long;
+%sqrt((-a.*sin(t)).^2+(b.*cos(t)).^2)
+a = sqrt(1/16);
+b = sqrt(1/4);
+f = @(t) sqrt((-a.*sin(t)).^2+(b.*cos(t)).^2); %norma 2 de la parametrización
+% para que la elipse de una vuelta completa el intervalo debe ser 0, 2*pi
 
-% Se transformará el problema en uno de encontrar ceros mediante la igualación
-% de P(x) a x, donde pasa a ser 0 = 230x^4+18x^3+9x^2-222x-9.
+[Q_nc, L] = cuad_gauss_c_iterativo(f,0,2*pi,10,2,1e-10,100)
 
-pfx = @(x) 230.*x.^4 + 18.*x.^3 + 9.*x.^2 - 222.*x - 9
-dpfx = @(x) 920.*x.^3+54.*x.^2+18.*x-222
-
-graphFunction(pfx,-0.25,1,10000,'-r')
-
-% Observando la gráfica podemos apreciar que un punto fijo se encuentra entre
-% -0.2 y 0.2, y el otro entre 0.8 y 1.
-
-% Se aproximará por bisección y luego se utilizará newton-raphson.
-
-p0_1 = biseccion(pfx,-0.2,0.2,1e-2,1000);
-p0_2 = biseccion(pfx,0.8,1,1e-2,1000);
-
-[p1, i1, h1, time1] = newton_raphson(pfx, dpfx, p0_1, 1e-6, 1000);
-[p2, i2, h2, time2] = newton_raphson(pfx, dpfx, p0_2, 1e-6, 1000);
-
-p1
-p2
-
-
+Q_g = cuad_gauss_c(f,0,2*pi,3,2) % para revisar exactitud

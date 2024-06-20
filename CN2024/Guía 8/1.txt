@@ -1,0 +1,1 @@
+p(x), q(x) y r(x) deben ser continuas en el intervalo cerrado [a,b], y la función q(x) debe ser positiva dentro de ese intervalo para que el PVC tenga solución única.

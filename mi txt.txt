@@ -1,0 +1,63 @@
+biseccion:
+- divide el intervalo a la mitad en cada iteración y utiliza el teorema de bolzano para determinar con cuál extremo quedarse para continuar iterando
+- convergencia lineal global
+
+punto fijo:
+- se transforma el problema de encontrar una raíz en uno de punto fijo, que son aquellos donde g(x) = x, entonces para la f(x) = 0 queda que g(x) = x + f(x)
+itera sobre la función g(x) y la recta y=x
+- la convergencia depende de un valor k que se encuentra acotado entre el abs de la derivada de g(x) y 1, si el abs de g(x) es distinto de cero, convergencia lineal, si es 0,
+convergencia cuadrática
+
+newton-raphson:
+- se realiza el desarrollo en series de taylor en un punto aproximado a la raíz para obtener la expresión lineal y con esta se despeja p, se obtiene una fórmula iterativa
+que utiliza el punto previo, la función en el punto previo y la derivada en el punto previo.
+- convergencia cuadrática local que puede ser lineal si la raíz es de multiplicidad 2 o mayor.
+
+secante:
+- reemplaza el término de la derivada de newton-raphson por su aproximación en diferencias finitas utilizando dos puntos.
+- convergencia superlineal e^1.618
+
+lagrange:
+- es una combinación de polinomios de lagrange y coeficientes, los polinomios están construidos de tal forma que valgan 1 para un único punto y 0 para el resto de los puntos.
+
+diferencias divididas:
+- se escribe un polinomio genérico de forma anidada tal que al evaluarlo en x_i, se anulen todos los términos desde x_i+1 hasta x_n, formando así una matriz triangular.
+
+splines:
+- son una serie de segmentos separados por nudos donde en cada subintervalo creado por los nudos hay un polinomio, que para el caso de splines cúbicos es de grado tres.
+- tienen que satisfacer un total de 5 condiciones:
+> pueden ser splines cúbicas naturales o sujetas, dependiendo de si las derivadas en los extremos no se conocen o se conocen, respectivamente.
+> los sub-polinomios evaluados en cada punto deben ser equivalentes al término independiente del polinomio de grado 3, estos son los puntos de la función original.
+> el sub-polinomio previo evaluado en un punto determinado debe ser igual al sub-polinomio actual evaluado en el mismo punto.
+> la derivada del sub-polinomio previo evaluado en un punto debe ser igual a la derivada del sub-polinomio actual evaluado en el mismo punto.
+> IDEM, pero con la derivada segunda del sub-polinomio.
+
+- con la sucesión de sub-polinomios de grado 3 que conforman la spline se puede armar una matriz tridiagonal que se utiliza para despejar los coeficientes necesarios para armar la spline.
+
+ajuste de combinación lineal de funciones:
+se hace una sumatoria de 1 hasta la cantidad de puntos requeridos N de la combinación lineal de funciones para cada xi, y se derivan cada una respecto a un coeficiente diferente. este arreglo de combinaciones lineales forma una matriz que es M*M^t, y si definimos M^t*y podemos obtener un sistema matricial M*M^t*a = M^t*y, donde a es el vector con cada uno de los coeficientes de la combinación lineal de funciones. luego para calcular el error hacemos la norma dos de la resta de la función obtenida evaluada en los x dados menos cada uno de los puntos originales dados.
+
+diferenciación:
+- se utiliza desarrollo en series de taylor con una distancia entre los puntos h, los puntos son equidistantes y pueden ser dos o más, mientras más puntos mejor la aproximación, pero mayor será el error de redondeo
+
+newton-cotes:
+- se integran numéricamente los polinomios de lagrange, la cantidad de polinomios dependerá de la cantidad de puntos que se quieran utilizar para dividir el intervalo. estos puntos son equiespaciados, y por eso recibe el nombre de newton-cotes.
+- con n=1 donde n son puntos, se obtiene la regla del trapecio, donde básicamente se obtiene el área debajo de una recta que va de a -> b. tiene un error de orden h^3
+- con n=2, se obtiene la regla de simpson, que evalúa el área debajo de la parábola que pasa por los tres puntos, tiene un error de orden h^5
+- con n=3 se obtiene otra regla de simpson llamada "3/8", cuyo error también es de orden h^5
+-la regla del trapecio permite integrar de manera exacta polinomios de grado 1 (es decir, rectas), ambas reglas de simpson permiten integrar de manera exacta polinomios de grado 3.
+
+existen variantes "compuestas" de la regla del trapecio y de simpson que consisten en aplicar dichas reglas en cada uno de los subintervalos, teniendo el trapecio que usar dos puntos y simpson 3 de ellos (es decir, trapecio va de a un sub-intervalo y simpson va de a 2 sub-intervalos)
+
+cuadratura de gauss:
+consiste en seleccionar puntos específicos dentro del intervalo de integración y evaluar la función en esos puntos, luego se realiza una suma ponderada utilizando los denominados pesos. los nodos son las raíces de polinomios ortogonales, como los de Legendre, y los pesos se calculan de manera que la fórmula sea exacta para los polinomios de hasta un grado determinado.
+
+euler:
+consiste en aproximar la solución de un pvi a partir de un punto inicial conocido mediante el cálculo de la derivada de y (que se obtiene de series de taylor) para aproximar el valor de y en el siguiente punto
+
+crank-nicholson:
+más preciso que el de euler, utiliza una pendiente promedio entre la pendiente de los puntos inicial y final del paso, es un método implícito, que quiere decir que depende de la solución siguiente
+
+runge-kutta:
+consiste en hacer uso del desarrollo en series de taylor para calcular múltiples derivadas en diferentes puntos intermedios del intervalo que se promedian para obtener la siguiente aproximación de la solución, el más común de utilizar es runge-kutta de orden 4.
+si llamamos al orden del método RK "m", el orden del error de truncamiento de los métodos RK es O(h^(m+1))

@@ -8,8 +8,8 @@ function [Q, L, it, h, t] = cuad_gauss_c_iterativo(f,a,b,L0,n,tol,kmax)
 
     Q = cuad_gauss_c(f,a,b,L,n);
 
-    h(i) = norm((Q - Q0),inf); %criterio de parada absoluto entre iteraciones
-    %h(i) = abs(Q - Q0)/abs(Q); %criterio de parada relativo entre iteraciones
+    %h(i) = norm((Q - Q0),inf); %criterio de parada absoluto entre iteraciones
+    h(i) = abs(Q - Q0)/abs(Q); %criterio de parada relativo entre iteraciones
 
     if h(i) < tol
       disp('cortó por tolerancia')

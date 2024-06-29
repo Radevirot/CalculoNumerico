@@ -16,7 +16,7 @@ r = @(x) -fuente(x)./K0;
 f1 = @(x) [p(x) , q(x) , r(x)];
 
 % diferencias finitas
-[x, y, L, i, h] = iterative_dif_fin_rob('dya',f1,inter,alpha,rob,10,1e-4,100);
+[x, y, L, i, h] = iterative_dif_fin_rob('dya',f1,inter,alpha,rob,10,1e-2,100);
 
 flujo_izq = -K0*((y(2)-y(1))/(x(2)-x(1)))
 %flujo_der = -K0*(y(end)-y(end-1))/(x(end)-x(end-1))

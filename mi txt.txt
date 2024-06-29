@@ -38,7 +38,7 @@ ajuste de combinación lineal de funciones:
 se hace una sumatoria de 1 hasta la cantidad de puntos requeridos N de la combinación lineal de funciones para cada xi, y se derivan cada una respecto a un coeficiente diferente. este arreglo de combinaciones lineales forma una matriz que es M*M^t, y si definimos M^t*y podemos obtener un sistema matricial M*M^t*a = M^t*y, donde a es el vector con cada uno de los coeficientes de la combinación lineal de funciones. luego para calcular el error hacemos la norma dos de la resta de la función obtenida evaluada en los x dados menos cada uno de los puntos originales dados.
 
 diferenciación:
-- se utiliza desarrollo en series de taylor con una distancia entre los puntos h, los puntos son equidistantes y pueden ser dos o más, mientras más puntos mejor la aproximación, pero mayor será el error de redondeo
+- se utiliza desarrollo en series de taylor con una distancia entre los puntos h, los puntos son equidistantes y pueden ser dos o más, mientras más puntos menor el error de truncamiento, pero mayor será el error de redondeo, esto quiere decir que tender el h a cero no nos otorgará un resultado exacto, sino que hay un valor óptimo de h para reducir el error
 
 newton-cotes:
 - se integran numéricamente los polinomios de lagrange, la cantidad de polinomios dependerá de la cantidad de puntos que se quieran utilizar para dividir el intervalo. estos puntos son equiespaciados, y por eso recibe el nombre de newton-cotes.
